@@ -1,0 +1,31 @@
+
+public class LanguageCode {
+    int Value = 10;
+    int Actual = -1;
+    public String Code(int N) {
+        return (char) N + "";
+    }
+    public int Find(String X){
+        for (int i = 31; i < 254; i++) {
+            if(X.equals((char) i + "")){
+                Actual = i;
+                return i;
+            }
+        }
+        return -1;
+    }
+    
+    public int Ecu(){
+        int X = Actual + Value;
+        if(X > 254)
+            X = (254 - X) * -1;
+        return X;
+    }
+    
+    public int Inv(int V){
+        int X = V - Value;
+        if(X < 31)
+            X = 254 + X;
+        return X;
+    }
+}
