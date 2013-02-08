@@ -1,0 +1,41 @@
+public class FunctionCodifier {
+    LanguageCode LC = new LanguageCode();
+    public String Code(String X){
+        String T = "";
+        for (int i = 0; i < X.length(); i++) {
+            String V = X.substring(i, (i+1));
+            if(LC.Find(V) > -1){
+                int NV = LC.Ecu();
+                T = T + LC.Code(NV);
+            }                
+        }
+        return T;
+    }
+    public String Decode(String X){
+        String T = "";
+        for (int i = 0; i < X.length(); i++) {
+            String V = X.substring(i, (i+1));
+            T = T + LC.Code(LC.Inv(LC.Find(V)));                
+        }
+        return T;
+    }
+    
+    public boolean Test(String Co, String De){
+        if((Decode(Co).equals(De) && Code(De).equals(Co)) || (Decode(De).equals(Co) && Code(Co).equals(De)))
+            return true;
+        return false;
+    }
+    
+    public String CoDe(int X, String V){
+        String T;
+        if(X == 1)
+            T = Code(V);
+        else
+            T = Decode(V);
+        return T;
+    }
+    
+    public void setValue(int X){
+        LC.Value = X;
+    }
+}
